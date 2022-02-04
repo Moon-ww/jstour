@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.js.mapper.SalesMapper">
+
+	<select id="getList" resultType="com.js.domain.ProductVO">
+		select sum(quantity) as totalqnt, sum((price2*quantity)) as 
+		totalprice2, sum((price3*quantity)) as totalprice3 from 
+		(select d.pseq,p.kind,p.name, d.quantity, p.price1,p.price2,p.price3,
+		o.id,o.indate from orders o, order_detail d, product p 
+		where d.oseq = o.oseq and d.pseq = p.pseq and o.indate 
+		BETWEEN TO_DATE('2022-01-01', 'YYYY-MM-DD') 
+		AND TO_DATE('2022-01-31', 'YYYY-MM-DD'))
+	</select>
+	
+</mapper>

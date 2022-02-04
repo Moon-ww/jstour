@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+		
+		<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
+		<bean id="AdminLoginSuccess" class="com.js.security.AdminLoginSuccessHandler"></bean>
+		<bean id="AdminUserDetailService" class="com.js.security.AdminUserDetailService"></bean>
+	<security:http>
+		<!--  <security:form-login/>-->
+		<security:intercept-url pattern="/adm/adminlogin" access="permitAll"/>
+		<security:intercept-url pattern="/adm/admin" access="hasRole('ROLE_ADMIN')"/>
+		<!--권한없으면  -->
+		<security:form-login login-page="/member/login.do" authentication-success-handler-ref="AdminLoginSuccess"/>
+		<!--로그아웃  -->
+		<security:logout logout-url="/adm/adminlogout" invalidate-session="true" logout-success-url="/"/>
+	</security:http>
+	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="AdminUserDetailService">
+			<security:password-encoder ref="bcryptPasswordEncoder"/>
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+</beans>

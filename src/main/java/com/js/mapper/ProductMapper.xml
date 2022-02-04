@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.js.mapper.ProductMapper">
+	<insert id="insert">
+		<selectKey keyProperty="pseq" order="BEFORE" resultType="int">
+			select product_seq.nextval from dual
+		</selectKey>
+			insert into product (pseq, name, kind, price1, price2, price3, content, image) 
+			values (#{pseq}, #{name}, #{kind}, #{price1}, #{price2}, #{price3}, #{content}, #{image})
+			
+	</insert>
+	<insert id="cinsert">
+			insert into pcolor (name, red, blue, grey, white, black) 
+			values (#{name}, #{red, jdbcType=VARCHAR}, #{blue, jdbcType=VARCHAR}, #{grey, jdbcType=VARCHAR}, #{white, jdbcType=VARCHAR}, #{black, jdbcType=VARCHAR})
+	</insert>
+	<insert id="sinsert">
+			insert into psize (name, s, m, l, xl) 
+			values (#{name}, #{s, jdbcType=VARCHAR}, #{m, jdbcType=VARCHAR}, #{l, jdbcType=VARCHAR}, #{xl, jdbcType=VARCHAR})
+	</insert>
+	<select id="getList" resultType="com.js.domain.ProductVO">
+		select * from product order by pseq
+	</select>
+</mapper>
