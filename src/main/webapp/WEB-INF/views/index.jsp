@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+   
     <%@ include file="header.jsp" %>
-    
+<!-- 이거 수정이 되나요?????? -->   
 <section>
 <div class="container-fluid">
 	<div class="row mainvisual">
