@@ -14,7 +14,8 @@
 	</div>
 	<div class="col-md-6" style="margin: 50px 0 50px 0;">
 		<!-- swiper슬라이더 메인컨테이너 -->
-		<!-- 세종수정 -->
+		<!-- 세종수정2 -->
+		<!-- 세종수정3 -->
 		<div class="swiper-container swiper1">
 		  <!-- 보여지는 영역 -->
 		  <div class="swiper-wrapper">
